@@ -77,3 +77,12 @@ check the first-order dependencies with ```rospack depends1 [package_name]```
 check the indirect dependencies with i.e. ```rospack depends1 rospy```
 
 or check all the dependencies with ```rospack depends [package_name]```
+
+##### Customize the package.xml
+
+```
+<description>(add the description here)</description>
+<maintainer email="user@todo.todo(add the email adress)">user(add the maintainer's name)</maintainer>
+<license>TODO</license>
+```
+#### Building a ROS Package
