@@ -86,3 +86,32 @@ or check all the dependencies with ```rospack depends [package_name]```
 <license>TODO</license>
 ```
 #### Building a ROS Package
+
+run ```catkin_make``` to build any catkin projects found in the src folder
+
+If source code in a different place, run 
+```
+catkin_make --source my_src
+catkin_make install --source my_src  # (optionally)
+```
+### Understanding ROS Nodes
+
+[Nodes](http://wiki.ros.org/Nodes): an executable that uses ROS to communicate with other nodes.
+
+[Messages](http://wiki.ros.org/Messages): ROS data type used when subscribing or publishing to a topic.
+
+[Topics](http://wiki.ros.org/Topics): Nodes can publish messages to a topic as well as subscribe to a topic to receive messages.
+
+[Master](http://wiki.ros.org/Master): Name service for ROS (i.e. helps nodes find each other)
+
+[rosout](http://wiki.ros.org/rosout): ROS equivalent of stdout/stderr
+
+[roscore](http://wiki.ros.org/roscore): Master + rosout + parameter server, a collection of nodes and programs that are pre-requisites of a ROS-based system
+
+run ```rosnode list``` to check the currently running ROS nodes
+
+run ```rosnode info [/name of ROS node]``` to see information about a specific node
+
+```rosrun [package_name] [node_name]```: directly run a node within a package (without having to know the package path). 
+
+
