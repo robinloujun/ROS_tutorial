@@ -1,0 +1,8 @@
+prefix=/home/robin/ROS_tutorial/catkin_ws/devel
+
+Name: beginner_tutorials
+Description: Description of beginner_tutorials
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/robin/ROS_tutorial/catkin_ws/devel/lib 
+Requires: 
