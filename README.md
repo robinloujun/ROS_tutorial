@@ -57,3 +57,23 @@ For a package to be considered a catkin package it must meet a few requirements:
 
 *    Each package must have its own folder
 
+#### Creating a catkin Package
+
+```
+catkin_create_pkg <package_name> [depend1] [depend2] [depend3]
+```
+For example, ```catkin_create_pkg beginner_tutorials std_msgs rospy roscpp``` creates a new package called 'beginner_tutorials' which depends on std_msgs, roscpp, and rospy.
+
+##### Building a catkin workspace and sourcing the setup file
+
+```catkin_make```
+
+Then source the generated setup file so as to add the workspace to the ROS environment with ```. ~/[workspace_name]/devel/setup.bash```
+
+##### Set the package dependencies
+
+check the first-order dependencies with ```rospack depends1 [package_name]```
+
+check the indirect dependencies with i.e. ```rospack depends1 rospy```
+
+or check all the dependencies with ```rospack depends [package_name]```
