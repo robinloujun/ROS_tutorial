@@ -20,13 +20,13 @@ check the ROS_PACKAGE_PATH environment variable
 echo $ROS_PACKAGE_PATH
 ```
 
-# Navigating the ROS Filesystem
+### Navigating the ROS Filesystem
 
 **Packages**: Packages are the software organization unit of ROS code. Each package can contain libraries, executables, scripts, or other artifacts.
 
 **Manifests** (package.xml): A manifest is a description of a package. It serves to define dependencies between packages and to capture meta information about the package like version, maintainer, license, etc... 
 
-### Filesystem Tools
+#### Filesystem Tools
 
 1. ```rospack find [package_name]```
 
@@ -45,3 +45,15 @@ allows you to change directory (cd) directly to a package or a stack.
 allows you to list directly in a package by name rather than by absolute path. 
 
 see more in the [rosbash](http://wiki.ros.org/rosbash) suite
+
+### Creating a ROS Package
+
+For a package to be considered a catkin package it must meet a few requirements:
+
+* The package must contain a catkin compliant package.xml file (provides meta information about the package).
+
+
+* The package must contain a CMakeLists.txt which uses catkin.
+
+*    Each package must have its own folder
+
