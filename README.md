@@ -114,4 +114,6 @@ run ```rosnode info [/name of ROS node]``` to see information about a specific n
 
 ```rosrun [package_name] [node_name]```: directly run a node within a package (without having to know the package path). 
 
+### Understanding ROS Topics
+
 
