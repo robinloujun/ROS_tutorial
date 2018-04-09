@@ -116,4 +116,5 @@ run ```rosnode info [/name of ROS node]``` to see information about a specific n
 
 ### Understanding ROS Topics
 
+The nodes communicate with each other over a ROS Topic. 
 
