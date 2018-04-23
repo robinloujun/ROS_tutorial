@@ -96,17 +96,12 @@ catkin_make install --source my_src  # (optionally)
 ```
 ### Understanding ROS Nodes
 
-[Nodes](http://wiki.ros.org/Nodes): an executable that uses ROS to communicate with other nodes.
-
-[Messages](http://wiki.ros.org/Messages): ROS data type used when subscribing or publishing to a topic.
-
-[Topics](http://wiki.ros.org/Topics): Nodes can publish messages to a topic as well as subscribe to a topic to receive messages.
-
-[Master](http://wiki.ros.org/Master): Name service for ROS (i.e. helps nodes find each other)
-
-[rosout](http://wiki.ros.org/rosout): ROS equivalent of stdout/stderr
-
-[roscore](http://wiki.ros.org/roscore): Master + rosout + parameter server, a collection of nodes and programs that are pre-requisites of a ROS-based system
+- [Nodes](http://wiki.ros.org/Nodes): an executable that uses ROS to communicate with other nodes.
+- [Messages](http://wiki.ros.org/Messages): ROS data type used when subscribing or publishing to a topic.
+- [Topics](http://wiki.ros.org/Topics): Nodes can publish messages to a topic as well as subscribe to a topic to receive messages.
+- [Master](http://wiki.ros.org/Master): Name service for ROS (i.e. helps nodes find each other)
+- [rosout](http://wiki.ros.org/rosout): ROS equivalent of stdout/stderr
+- [roscore](http://wiki.ros.org/roscore): Master + rosout + parameter server, a collection of nodes and programs that are pre-requisites of a ROS-based system
 
 run ```rosnode list``` to check the currently running ROS nodes
 
@@ -116,5 +111,17 @@ run ```rosnode info [/name of ROS node]``` to see information about a specific n
 
 ### Understanding ROS Topics
 
-The nodes communicate with each other over a ROS Topic. 
+The nodes communicate with each other over a ROS Topic. One node publishes the key strokes on a topic, while the other subscribes to the same topic to receive the key strokes. run ```rosrun rqt_graph rqt_graph``` to show the currently running nodes and topics.
 
+- ```rostopic echo [topic]``` shows the data published on a topic. 
+- ```rostopic list``` returns a list of all topics currently subscribed to and published. 
+- ```rostopic type [topic]``` returns the message type of any topic being published. 
+- ```rostopic pub [topic] [msg_type] [args]``` publishes data on to a topic currently advertised.   
+    e.g. ```rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'```  
+    - dash-one(`-1`): causes rostopic to only publish one message then exit
+    - double-dash(`--`): tells the option parser that none of the following arguments is an option
+- ```rostopic hz [topic]``` reports the rate at which data is published. 
+
+run ```rosrun rqt_plot rqt_plot``` to display a scrolling time plot of the data published on topics.
+
+### Understanding ROS Services and Parameters
