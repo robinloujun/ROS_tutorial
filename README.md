@@ -2,37 +2,23 @@
 just go through the ROS tutorial
 
 ### Installing and Configuring the ROS Environment
-check the ROS Environment (environment variables)
-```
-printenv | grep ROS
-```
-Create a ROS Workspace
-```
-cd [workspace_name]
-catkin_make
-```
-[catkin_make](http://wiki.ros.org/catkin/commands/catkin_make) create a CMakeLists.txt link in your 'src' folder, additionally, a 'build' and 'devel' folder.
 
-Inside the 'devel' folder you can see that there are now several setup.*sh files. Sourcing any of these files will overlay this workspace on top of your environment.
+```printenv | grep ROS``` checks the ROS Environment (environment variables)
 
-check the ROS_PACKAGE_PATH environment variable
-```
-echo $ROS_PACKAGE_PATH
-```
+```catkin_make```  creates a ROS Workspace -> creates a CMakeLists.txt link in your 'src' folder, additionally, a 'build' and 'devel' folder. Inside the 'devel' folder -> several setup.\*sh files. Sourcing any of these files will overlay this workspace on top of the environment.
+
+```echo $ROS_PACKAGE_PATH``` check the ROS_PACKAGE_PATH environment variable
 
 ### Navigating the ROS Filesystem
 
-**Packages**: Packages are the software organization unit of ROS code. Each package can contain libraries, executables, scripts, or other artifacts.
-
-**Manifests** (package.xml): A manifest is a description of a package. It serves to define dependencies between packages and to capture meta information about the package like version, maintainer, license, etc... 
-
-#### Filesystem Tools
-
-1. ```rospack find [package_name]``` returns the path to package. 
-2. ```roscd``` allows you to change directory (cd) directly to a package or a stack. 
-    - ```pwd``` - Print Working Directory (shell builtin) 
-    - ```roscd log``` takes you to the folder where ROS stores log files.
-3. ```rosls``` allows you to list directly in a package by name rather than by absolute path. 
+- **Packages**: Packages are the software organization unit of ROS code. Each package can contain libraries, executables, scripts, or other artifacts.
+- **Manifests** (package.xml): A manifest is a description of a package. It serves to define dependencies between packages and to capture meta information about the package like version, maintainer, license, etc... 
+- **Filesystem Tools**
+    - ```rospack find [package_name]``` returns the path to package. 
+    - ```roscd``` allows you to change directory (cd) directly to a package or a stack. 
+        - ```pwd``` - Print Working Directory (shell builtin) 
+        - ```roscd log``` takes you to the folder where ROS stores log files.
+    - ```rosls``` allows you to list directly in a package by name rather than by absolute path. 
 
 see more in the [rosbash](http://wiki.ros.org/rosbash) suite
 
@@ -40,12 +26,9 @@ see more in the [rosbash](http://wiki.ros.org/rosbash) suite
 
 For a package to be considered a catkin package it must meet a few requirements:
 
-* The package must contain a catkin compliant package.xml file (provides meta information about the package).
-
-
-* The package must contain a CMakeLists.txt which uses catkin.
-
-*    Each package must have its own folder
+- The package must contain a catkin compliant package.xml file (provides meta information about the package).
+- The package must contain a CMakeLists.txt which uses catkin.
+- Each package must have its own folder
 
 #### Creating a catkin Package
 
@@ -111,7 +94,34 @@ The nodes communicate with each other over a ROS Topic. One node publishes the k
     - dash-one(`-1`): causes rostopic to only publish one message then exit
     - double-dash(`--`): tells the option parser that none of the following arguments is an option
 - ```rostopic hz [topic]``` reports the rate at which data is published. 
-
-run ```rosrun rqt_plot rqt_plot``` to display a scrolling time plot of the data published on topics.
+- ```rosrun rqt_plot rqt_plot``` to display a scrolling time plot of the data published on topics.
 
 ### Understanding ROS Services and Parameters
+
+1. ```rosservice```
+
+- ```rosservice list``` print information about active services
+- ```rosservice type``` print service type
+- ```rosservice call``` call the service with the provided args
+- ```rosservice find``` find services by service type
+- ```rosservice uri``` print service ROSRPC uri
+
+2. ```rpsparam``` is used to store and manipulate data on the ROS Parameter Server. The Parameter Server can store integers, floats, boolean, dictionaries, and lists. rosparam uses the YAML markup language for syntax.
+
+- ```rosparam list``` list parameter names
+- ```rosparam set``` set parameter
+- ```rosparam get``` get parameter
+    - ```rosparam get /``` show us the contents of the entire Parameter Server. 
+- ```rosparam dump``` dump parameters to file (e.g. params.yaml)
+- ```rosparam load``` load parameters from file in a new namespace (e.g. ```rosparam load params.yaml copy```)
+- ```rosparam delete``` delete parameter
+
+### Using rqt_console and roslaunch
+
+- ```rqt_console``` attaches to ROS's logging framework to display output from nodes. 
+- ```rqt_logger_level``` allows us to change the verbosity level (Fatal>ERROR>WARN>INFO>DEBUG) of nodes as they run. 
+
+```roslaunch``` starts nodes as defined in a launch file.
+
+```roslaunch [package] [filename.launch]```
+
