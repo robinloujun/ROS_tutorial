@@ -126,3 +126,46 @@ The nodes communicate with each other over a ROS Topic. One node publishes the k
     - **field types**: Header(a timestamp and coordinate frame information) / int8, int16, int32, int64 (plus uint*) / float32, float64 / string / time, duration / other msg files / variable-length array[] and fixed-length array[C] 
 - **srv** file: an srv file describes a service. composed of two parts (request & response). 
 
+make sure that the msg files are turned into source code for C++, Python, and other languages (in package.xml)
+```
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+```
+  
+(in CMakeLists.txt)
+``` 
+# Add the message_generation dependency to the find_package call
+   find_package(catkin REQUIRED COMPONENTS
+   roscpp
+   rospy
+   std_msgs
+   message_generation
+)
+# Make sure you export the message runtime dependency. 
+catkin_package(
+  ...
+  CATKIN_DEPENDS message_runtime ...
+  ...)
+  
+# Make sure that CMake knows when it has to reconfigure the project after you add other .msg files. 
+add_message_files(
+  FILES
+  Message1.msg
+  Message2.msg
+)  
+
+# Make sure that CMake knows when it has to reconfigure the project after you add other .srv files. 
+add_service_files(
+  FILES
+  Service1.srv
+  Service2.srv
+)
+
+# Ensure the generate_messages() function is called
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+```
+
+Common step for msg and srv: ```catkin_make install``` in the catkin workspace
