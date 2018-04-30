@@ -22,45 +22,30 @@ just go through the ROS tutorial
 
 see more in the [rosbash](http://wiki.ros.org/rosbash) suite
 
-### Creating a ROS Package
+### Creating & building a ROS Package
 
 For a package to be considered a catkin package it must meet a few requirements:
-
 - The package must contain a catkin compliant package.xml file (provides meta information about the package).
 - The package must contain a CMakeLists.txt which uses catkin.
 - Each package must have its own folder
 
-#### Creating a catkin Package
+1. ```catkin_create_pkg <package_name> [depend1] [depend2] [depend3]``` creates a catkin Package. (e.g. ```catkin_create_pkg beginner_tutorials std_msgs rospy roscpp``` creates a new package called 'beginner_tutorials' which depends on std_msgs, roscpp, and rospy.)
 
-```
-catkin_create_pkg <package_name> [depend1] [depend2] [depend3]
-```
-For example, ```catkin_create_pkg beginner_tutorials std_msgs rospy roscpp``` creates a new package called 'beginner_tutorials' which depends on std_msgs, roscpp, and rospy.
+2. Builde a catkin workspace with ```catkin_make``` and source the generated setup file so as to add the workspace to the ROS environment with ```. ~/[workspace_name]/devel/setup.bash```
 
-##### Building a catkin workspace and sourcing the setup file
+3. Set the package dependencies
+- check the first-order dependencies with ```rospack depends1 [package_name]```
+- check the indirect dependencies with i.e. ```rospack depends1 rospy```
+- check all the dependencies with ```rospack depends [package_name]```
 
-```catkin_make```
-
-Then source the generated setup file so as to add the workspace to the ROS environment with ```. ~/[workspace_name]/devel/setup.bash```
-
-##### Set the package dependencies
-
-check the first-order dependencies with ```rospack depends1 [package_name]```
-
-check the indirect dependencies with i.e. ```rospack depends1 rospy```
-
-or check all the dependencies with ```rospack depends [package_name]```
-
-##### Customize the package.xml
+4. Customize the package.xml
 
 ```
 <description>(add the description here)</description>
 <maintainer email="user@todo.todo(add the email adress)">user(add the maintainer's name)</maintainer>
 <license>TODO</license>
 ```
-#### Building a ROS Package
-
-run ```catkin_make``` to build any catkin projects found in the src folder
+5. run ```catkin_make``` to build any catkin projects found in the src folder
 
 If source code in a different place, run 
 ```
