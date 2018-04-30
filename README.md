@@ -83,7 +83,7 @@ The nodes communicate with each other over a ROS Topic. One node publishes the k
 
 ### Understanding ROS Services and Parameters
 
-1. ```rosservice```
+1. ```rosservice``` is another way that nodes can communicate with each other -> allow nodes to send a **request** and receive a **response**. 
 
 - ```rosservice list``` print information about active services
 - ```rosservice type``` print service type
@@ -106,7 +106,23 @@ The nodes communicate with each other over a ROS Topic. One node publishes the k
 - ```rqt_console``` attaches to ROS's logging framework to display output from nodes. 
 - ```rqt_logger_level``` allows us to change the verbosity level (Fatal>ERROR>WARN>INFO>DEBUG) of nodes as they run. 
 
-```roslaunch``` starts nodes as defined in a launch file.
+```roslaunch``` starts nodes as defined in a launch file. ```roslaunch [package] [filename.launch]```
 
-```roslaunch [package] [filename.launch]```
+```
+<launch> # launch tag -> the file identified as a launch file 
+
+<group ns="[namespace tag] "> # groups with a namespace tag with a node with a name
+   <node pkg="[node]" name="[name]" type="[type_name]"/>
+</group>
+
+<node pkg="[node]" name="[name]" type="[type]">
+   <remap from="input" to="[topic]"/>
+   <remap from="output" to="[topic]"/>
+</node>
+</launch>
+```
+### Creating a ROS msg and srv
+- **msg** filoe: simple text file that describes the fields of a ROS message. used to generate source code for messages in different languages.  
+    - **field types**: Header(a timestamp and coordinate frame information) / int8, int16, int32, int64 (plus uint*) / float32, float64 / string / time, duration / other msg files / variable-length array[] and fixed-length array[C] 
+- **srv** file: an srv file describes a service. composed of two parts (request & response). 
 
