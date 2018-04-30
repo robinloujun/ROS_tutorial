@@ -28,21 +28,11 @@ echo $ROS_PACKAGE_PATH
 
 #### Filesystem Tools
 
-1. ```rospack find [package_name]```
-
-returns the path to package. 
-
-2. ```roscd``` 
-
-allows you to change directory (cd) directly to a package or a stack. 
-
-```pwd``` - Print Working Directory (shell builtin) 
-
-```roscd log``` takes you to the folder where ROS stores log files.
-
-3. ```rosls``` 
-
-allows you to list directly in a package by name rather than by absolute path. 
+1. ```rospack find [package_name]``` returns the path to package. 
+2. ```roscd``` allows you to change directory (cd) directly to a package or a stack. 
+    - ```pwd``` - Print Working Directory (shell builtin) 
+    - ```roscd log``` takes you to the folder where ROS stores log files.
+3. ```rosls``` allows you to list directly in a package by name rather than by absolute path. 
 
 see more in the [rosbash](http://wiki.ros.org/rosbash) suite
 
