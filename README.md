@@ -1,5 +1,5 @@
 # ROS_tutorial
-just go through the ROS tutorial
+just go through the [ROS tutorial](http://wiki.ros.org/ROS/Tutorials)
 
 ### Installing and Configuring the ROS Environment
 
